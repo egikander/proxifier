@@ -1,6 +1,6 @@
 # Proxifier
 
-**Todoer** - Simple proxy Node.js code example
+**Proxifier** - Simple proxy Node.js code example
 
 For running environment:
 
