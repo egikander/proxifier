@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proxifier</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<style>
+    #content {
+        margin-top: 40px;
+    }
+
+    fieldset {
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
+    .btn {
+        display: block;
+        margin-top: 10px;
+        padding: 5px;
+    }
+</style>
+<body>
+
+    <div id="content">
+        <form id="get_file_form" action="/" method="POST">
+            <fieldset>
+            <legend>Get file...</legend>
+                <select id="filename">
+                    <option disabled selected>Choose file...</option>
+                    <option value="file1.txt">file1.txt</option>
+                    <option value="file2.txt">file2.txt</option>
+                    <input class="btn" type="submit" value="Get"></input>
+                </select>
+            </fieldset>
+        </form>
+    </div>
+
+    <fieldset>
+        <legend>File content</legend>
+        <div id="file_content"></div>
+    </fieldset>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#get_file_form').on('submit', function(e) {
+                e.preventDefault();
+
+                var filename = $('#filename').val();
+
+                if(filename) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/getfile',
+                        data: JSON.stringify({filename: filename}),
+                        //dataType: 'json',
+                        success: function(data) {
+                            $('#file_content').html(data);
+                            console.log(data);
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+node client.js &
+node proxy.js &
+node fileserver.js &
